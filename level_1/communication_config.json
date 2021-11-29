@@ -1,0 +1,20 @@
+{
+    "input": {
+        "log_separator": "|",
+        "kv_separator": "=",
+        "dict_keys": [
+            "sender"
+        ]
+    },
+    "keys_to_rename": {
+        "sender.profession": "category"
+    },
+    "output": {
+        "indent": 4,
+        "separators": [
+            ",",
+            ":"
+        ],
+        "double_quotes_to_single": "True"
+    }
+}
