@@ -83,3 +83,17 @@ If you haven't made technical level 2, you can use data stored in `./sample/comm
 No obligation of setting up a database, we'll only focus on the sql code.
 
 Have fun
+
+## Solution proposed
+The solution is based on docker so make sure you have it to launch the script :
+```bash
+bash lifen_test.sh
+```
+If you do not want to use docker but would prefer to use the python script directly make sure to comment the 2 last  line of the `main.py` file :
+```python
+# while True:
+#     time.sleep(1)
+```
+Also you will have to change the mysqldb config file and put your info (user, password, host and database) to be able to connect it.
+The SQL queries are executed and create file in the directory `result/`.
+
