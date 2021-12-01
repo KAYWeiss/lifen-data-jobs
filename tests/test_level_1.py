@@ -48,7 +48,7 @@ def test_should_rename_dict_keys():
     assert(communication_log_parser.rename_keys(communication_sample_before_renaming) == expected_communication_sample)
     
 def test_communication_parsing():
-    communication_log_parser = CommunicationLogParser.load_config('./level_1/communication_config.json')
+    communication_log_parser = CommunicationLogParser.init_from_config_file('./level_1/communication_config.json')
     communication_sample = "id=testId|telecom=mail|created_at=1993-03-11 04:19:12|sender={'name': 'Kallum Wises', 'profession': 'writer'}"
     
     expected_communication_sample = {

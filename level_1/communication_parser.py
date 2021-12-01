@@ -49,15 +49,15 @@ class CommunicationLogParser:
     
     def rename_keys(self, dict_to_change):
         """ 
-        This function takes as 2 strings and a dict and returns a new dict with a key renamed
+        This function uses the config in the parser and a dict
+        to return a new dict with a key renamed (based on the config).
         """
-        changed_dict = dict_to_change
         for old_key, new_key in self.config.get('keys_to_rename').items():
-            nested_dict = changed_dict
+            nested_dict = dict_to_change
             for nested_key in old_key.split('.')[:-1]:
                 nested_dict = nested_dict.get(nested_key)
             nested_dict[new_key] = nested_dict.pop(old_key.split('.')[-1])
-        return changed_dict
+        return dict_to_change
 
 
     def communication_file_read(input_file_path):
