@@ -4,7 +4,7 @@ import csv
 
 class MySQLCommunicationDB:
 
-    def __init__(self, config):
+    def __init__(self, config: str):
         self.connector = connector.connect(**config)
 
     @classmethod
@@ -37,7 +37,7 @@ class MySQLCommunicationDB:
         create_cursor = self.connector.cursor()
         create_cursor.execute(query)
 
-    def insert_one_communication(self, communication_log):
+    def insert_one_communication(self, communication_log: dict):
         """  
         This function inserts a communication_log inside the communication table
         """
@@ -55,11 +55,11 @@ class MySQLCommunicationDB:
 
         insert_cursor.execute(query, db_com_log)
 
-    def get_dematerialization_rate(self, output_file_path = None):
+    def get_dematerialization_rate(self, output_file_path: str = None):
         """  
         This function queries the communication table to get the dematerialization rate
         for each liberal doctor. 
-        It prints the results and saves them to a file if one is specified."""
+        It saves them to a file if one is specified."""
         dematerilization_rate_cursor = self.connector.cursor()
         dematerilization_rate_query = """
         WITH liberal_doctors AS (SELECT sender_name, telecom, CASE WHEN telecom = 'paper' THEN 'True' END AS papered_com FROM communication WHERE sender_category = 'liberal')
@@ -73,11 +73,11 @@ class MySQLCommunicationDB:
                 writer = csv.writer(f)
                 writer.writerows(results)
 
-    def get_doctors_list(self, output_file_path = None):
+    def get_doctors_list(self, output_file_path: str = None):
         """  
         This function queries the communication table to get the list of doctors that have done
         at least 5 communications following their first one.
-        It prints the results and saves them to a file if one is specified.
+        It saves them to a file if one is specified.
         """
         seven_days_cursor = self.connector.cursor()
         seven_days_query = """

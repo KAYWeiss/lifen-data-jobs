@@ -2,17 +2,17 @@ import ast
 import json
 
 class CommunicationLogParser:
-    def __init__(self, cfg):
+    def __init__(self, cfg: dict):
         self.config = cfg
 
     @classmethod
-    def init_from_config_file(cls, config_file_path):
+    def init_from_config_file(cls, config_file_path: str):
         with open(config_file_path, 'r') as f:
             config = json.load(f)
             return cls(config)
 
 
-    def parse(self, communication_log):
+    def parse(self, communication_log: str) -> dict:
         """ 
         This function takes a string as input and transforms it to dict.
         It uses the input config to split the original string, and transform the different keys.
@@ -31,7 +31,7 @@ class CommunicationLogParser:
         self.rename_keys(communication_dict)
         return communication_dict
 
-    def communication_json_write(self, output_file_path, communication_log):
+    def communication_json_write(self, output_file_path: str, communication_log: str):
         """ 
         This function write a dict to a json file.
         It uses the config to define the indent, separatorsand quotes of the json output. 
@@ -47,7 +47,7 @@ class CommunicationLogParser:
             output_file.writelines(output_string)
 
     
-    def rename_keys(self, dict_to_change):
+    def rename_keys(self, dict_to_change: dict) -> dict:
         """ 
         This function uses the config in the parser and a dict
         to return a new dict with a key renamed (based on the config).
@@ -60,7 +60,7 @@ class CommunicationLogParser:
         return dict_to_change
 
 
-    def communication_file_read(input_file_path):
+    def communication_file_read(input_file_path: str) -> str:
         """ 
         This function opens a file andread and returns the first line as a string.
         """
