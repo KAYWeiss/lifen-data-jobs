@@ -1,3 +1,4 @@
+python communication_file_generator.py
 docker-compose up -d
 sleep 30
 until docker-compose exec app test -e ./result/doctors_list.csv 
